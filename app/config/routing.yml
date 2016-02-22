@@ -1,3 +1,8 @@
+digital.pilot_cms:
+    resource: "@digital_pilotCmsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
