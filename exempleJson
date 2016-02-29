@@ -1,0 +1,34 @@
+      {  
+         "id_compte":13,
+         "nom":"SCHUH",
+         "prenom":"Benjamin",
+         "email":"schuh.benjamin.wil@gmail.com",
+         "telephone":+33, 0387840994,
+         "portable":+33, 064963315,
+         "age":"35",
+         "adresse":"6 rue de la haye, Metz, 57000",
+         "nom_entreprise":"Glamuse",
+         "taille_entreprise":"15, moyenne",
+         "adresse_entreprise":"Bertrange, Luxembourg"
+      },
+      {  
+         "id_compte":14,
+         "nom":"Egloff",
+         "prenom":"Guillaume",
+         "email":"egloff.guillaume@gmail.com",
+         "telephone":+33, 0387840884,
+         "portable":+33, 064963345,
+         "age":"21",
+         "adresse":"rue de neufbourg, Metz, 57000",
+         "nom_entreprise":"Farvest",
+         "taille_entreprise":"4, petite",
+         "adresse_entreprise":"Bertrange, Luxembourg"
+      },
+
+
+      {  
+         "id_compte":13,
+         "login":"Durandil",
+         "password":"*********",
+         "accreditation":3
+      },
