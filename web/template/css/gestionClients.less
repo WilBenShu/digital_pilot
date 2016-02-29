@@ -1,0 +1,99 @@
+/********************* Variable *************************/
+
+@BkColorBody: rgb(137, 179, 199);
+@BkColorTitreConnexion: rgb(45, 152, 226);
+@BkColorFondForm: rgb(230, 230, 230);
+@BkUl: rgb(69, 87, 96);
+
+//FONCTIONS
+.border-radius(@radius) {
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+  border-radius: @radius;
+}
+
+html {
+  overflow-x: hidden;
+  body {
+    background-color: @BkColorBody;
+    .navbar {
+      background-color: @BkUl;
+      li a {
+        color: white;
+      }
+      li a:hover {
+        color: @BkUl;
+      }
+      li a i {
+        padding-right: 3px;
+      }
+      .navbar-text {
+        margin: 10px;
+        color: white;
+      }
+      .dropdown,
+      .navbar-text {
+        float: right;
+        .dropdown-menu {
+          li a {
+            color: black;
+          }
+        }
+      }
+    }
+    .row {
+      p {
+        color: #949494;
+        font-family: 'Segoe UI';
+        font-weight: 400;
+        margin-left: 15px;
+      }
+      h3 {
+        padding-top: 10px;
+        font-family: 'Segoe UI';
+        text-align: center;
+      }
+    }
+  }
+}
+
+input {
+  background-image: url("../img/search.png");
+  background-repeat: no-repeat;
+  background-position: left;
+  .border-radius(15px);
+  border: 2px #dadada solid;
+  background-color: #d7d8da;
+  padding-left: 40px;
+  height: 30px;
+  width: 200px;
+}
+
+.blocSearchClient {
+  background-color: #d7d8da;
+}
+
+.blocGestionClient {
+  background-color: #d7d8da;
+}
+
+button {
+  color: #949494;
+  font-family: 'Segoe UI';
+  font-weight: 400;
+  .border-radius(5px);
+  border: 0px;
+  height: 30px;
+  width: 150px;
+}
+
+#exporterClient {
+}
+
+#supprimerClient {
+  margin-left: 20px;
+}
+
+button:hover {
+  background-color: darkgrey;
+}

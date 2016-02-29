@@ -1,0 +1,77 @@
+/********************* Variable *************************/
+
+@BkColorBody: rgb(137, 179, 199);
+@BkColorTitreConnexion: rgb(45, 152, 226);
+@BkColorFondForm: rgb(230, 230, 230);
+@BkUl: rgb(69, 87, 96);
+
+//FONCTIONS
+.border-radius(@radius) {
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+  border-radius: @radius;
+}
+
+html {
+  overflow-x: hidden;
+  body {
+    background-color: @BkColorBody;
+    .navbar {
+      background-color: @BkUl;
+      li a {
+        color: white;
+      }
+      li a:hover {
+        color: @BkUl;
+      }
+      li a i {
+        padding-right: 3px;
+      }
+      .navbar-text {
+        margin: 10px;
+        color: white;
+      }
+      .dropdown,
+      .navbar-text {
+        float: right;
+        .dropdown-menu {
+          li a {
+            color: black;
+          }
+        }
+      }
+    }
+  }
+}
+
+.checkboxSlideShow {
+  margin-top: 2.5%;
+}
+
+.blocPrevisu {
+  background-color: #d7d8da;
+  margin-top: 20px;
+  height: 500px;
+
+  p {
+    text-align: center;
+    margin-top: 250px;
+    color: #949494;
+    font-family: 'Segoe UI';
+    font-size: 30px;
+  }
+}
+
+button {
+  color: #949494;
+  font-family: 'Segoe UI';
+  font-weight: 400;
+  .border-radius(5px);
+  border: 0px;
+  height: 25px;
+  width: 100px;
+}
+
+button:hover {
+  background-color: darkgrey;
+}
