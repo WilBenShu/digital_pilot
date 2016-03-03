@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html lang="fr">
+{% extends "digital_pilotCmsBundle::layout.html.twig" %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion</title>
-    <!-- Boostrap -->
-    <link rel="stylesheet" href="{{ asset('/template/css/bootstrap.css') }}">
-    <!-- Font awesome -->
-    <link rel="stylesheet" href="{{ asset('/template/font-awesome/css/font-awesome.min.css') }}">
+{% block style %}
     <!-- Less -->
     <link rel="stylesheet/less" type="text/css" href="{{ asset('/template/css/styles.less') }}" />
-</head>
+{% endblock %}
 
-<body>
+{% block content %}
+
     <div class="container">
         <div class="row">
             <div class="col-xs-10 col-sm-8 col-md-4">
@@ -36,12 +29,12 @@
                         </div>
                     </div>
                 </form>
-                <button type="button" class="btn btn-primary btn-lg"><a href="choiceApp.html">Connexion</a></button>
+                <button type="button" class="btn btn-primary btn-lg"><a href="{{ path('digital_pilot_choiceApp') }}">Connexion</a></button>
             </div>
         </div>
     </div>
-</body>
 
-<script src="{{ asset('/template/less.js/dist/less.min.js') }}" type="text/javascript"></script>
+{% endblock %}
 
-</html>
+
+

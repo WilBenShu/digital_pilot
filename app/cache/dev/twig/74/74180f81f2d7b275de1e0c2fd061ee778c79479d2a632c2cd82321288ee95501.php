@@ -7,43 +7,56 @@ class __TwigTemplate_c403937bb938534de4b5f9788752df361cf2e4dc10df63a546b4ff826e4
     {
         parent::__construct($env);
 
-        $this->parent = false;
-
+        // line 1
+        $this->parent = $this->loadTemplate("digital_pilotCmsBundle::layout.html.twig", "digital_pilotCmsBundle:Default:index.html.twig", 1);
         $this->blocks = array(
+            'style' => array($this, 'block_style'),
+            'content' => array($this, 'block_content'),
         );
+    }
+
+    protected function doGetParent(array $context)
+    {
+        return "digital_pilotCmsBundle::layout.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_4502a5abb364060ec4330754f13cebb5bc0928d19e610eb11921536691f7918a = $this->env->getExtension("native_profiler");
-        $__internal_4502a5abb364060ec4330754f13cebb5bc0928d19e610eb11921536691f7918a->enter($__internal_4502a5abb364060ec4330754f13cebb5bc0928d19e610eb11921536691f7918a_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "digital_pilotCmsBundle:Default:index.html.twig"));
+        $__internal_0d6c831983c8745f45b1ed88c2385406b41c2ac13e4454a00e7f27214c917a11 = $this->env->getExtension("native_profiler");
+        $__internal_0d6c831983c8745f45b1ed88c2385406b41c2ac13e4454a00e7f27214c917a11->enter($__internal_0d6c831983c8745f45b1ed88c2385406b41c2ac13e4454a00e7f27214c917a11_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "digital_pilotCmsBundle:Default:index.html.twig"));
 
-        // line 1
-        echo "<!DOCTYPE html>
-<html lang=\"fr\">
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
+        
+        $__internal_0d6c831983c8745f45b1ed88c2385406b41c2ac13e4454a00e7f27214c917a11->leave($__internal_0d6c831983c8745f45b1ed88c2385406b41c2ac13e4454a00e7f27214c917a11_prof);
 
-<head>
-    <meta charset=\"utf-8\">
-    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-    <title>Connexion</title>
-    <!-- Boostrap -->
-    <link rel=\"stylesheet\" href=\"";
-        // line 9
-        echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("/template/css/bootstrap.css"), "html", null, true);
-        echo "\">
-    <!-- Font awesome -->
-    <link rel=\"stylesheet\" href=\"";
-        // line 11
-        echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("/template/font-awesome/css/font-awesome.min.css"), "html", null, true);
-        echo "\">
-    <!-- Less -->
+    }
+
+    // line 3
+    public function block_style($context, array $blocks = array())
+    {
+        $__internal_d6b5e8ad2c65c4e162517eec9b664dcdaa38e2cb23028c403710a39c38ba5dc0 = $this->env->getExtension("native_profiler");
+        $__internal_d6b5e8ad2c65c4e162517eec9b664dcdaa38e2cb23028c403710a39c38ba5dc0->enter($__internal_d6b5e8ad2c65c4e162517eec9b664dcdaa38e2cb23028c403710a39c38ba5dc0_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "style"));
+
+        // line 4
+        echo "    <!-- Less -->
     <link rel=\"stylesheet/less\" type=\"text/css\" href=\"";
-        // line 13
+        // line 5
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("/template/css/styles.less"), "html", null, true);
         echo "\" />
-</head>
+";
+        
+        $__internal_d6b5e8ad2c65c4e162517eec9b664dcdaa38e2cb23028c403710a39c38ba5dc0->leave($__internal_d6b5e8ad2c65c4e162517eec9b664dcdaa38e2cb23028c403710a39c38ba5dc0_prof);
 
-<body>
+    }
+
+    // line 8
+    public function block_content($context, array $blocks = array())
+    {
+        $__internal_0216b2154e5f010d0abb0d796213edb04e9269c1660b84e70c5957b14cb4d428 = $this->env->getExtension("native_profiler");
+        $__internal_0216b2154e5f010d0abb0d796213edb04e9269c1660b84e70c5957b14cb4d428->enter($__internal_0216b2154e5f010d0abb0d796213edb04e9269c1660b84e70c5957b14cb4d428_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "content"));
+
+        // line 9
+        echo "
     <div class=\"container\">
         <div class=\"row\">
             <div class=\"col-xs-10 col-sm-8 col-md-4\">
@@ -66,20 +79,17 @@ class __TwigTemplate_c403937bb938534de4b5f9788752df361cf2e4dc10df63a546b4ff826e4
                         </div>
                     </div>
                 </form>
-                <button type=\"button\" class=\"btn btn-primary btn-lg\"><a href=\"choiceApp.html\">Connexion</a></button>
+                <button type=\"button\" class=\"btn btn-primary btn-lg\"><a href=\"";
+        // line 32
+        echo $this->env->getExtension('routing')->getPath("digital_pilot_choiceApp");
+        echo "\">Connexion</a></button>
             </div>
         </div>
     </div>
-</body>
 
-<script src=\"";
-        // line 45
-        echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("/template/less.js/dist/less.min.js"), "html", null, true);
-        echo "\" type=\"text/javascript\"></script>
-
-</html>";
+";
         
-        $__internal_4502a5abb364060ec4330754f13cebb5bc0928d19e610eb11921536691f7918a->leave($__internal_4502a5abb364060ec4330754f13cebb5bc0928d19e610eb11921536691f7918a_prof);
+        $__internal_0216b2154e5f010d0abb0d796213edb04e9269c1660b84e70c5957b14cb4d428->leave($__internal_0216b2154e5f010d0abb0d796213edb04e9269c1660b84e70c5957b14cb4d428_prof);
 
     }
 
@@ -95,25 +105,18 @@ class __TwigTemplate_c403937bb938534de4b5f9788752df361cf2e4dc10df63a546b4ff826e4
 
     public function getDebugInfo()
     {
-        return array (  77 => 45,  42 => 13,  37 => 11,  32 => 9,  22 => 1,);
+        return array (  84 => 32,  59 => 9,  53 => 8,  44 => 5,  41 => 4,  35 => 3,  11 => 1,);
     }
 }
-/* <!DOCTYPE html>*/
-/* <html lang="fr">*/
+/* {% extends "digital_pilotCmsBundle::layout.html.twig" %}*/
 /* */
-/* <head>*/
-/*     <meta charset="utf-8">*/
-/*     <meta name="viewport" content="width=device-width, initial-scale=1.0">*/
-/*     <title>Connexion</title>*/
-/*     <!-- Boostrap -->*/
-/*     <link rel="stylesheet" href="{{ asset('/template/css/bootstrap.css') }}">*/
-/*     <!-- Font awesome -->*/
-/*     <link rel="stylesheet" href="{{ asset('/template/font-awesome/css/font-awesome.min.css') }}">*/
+/* {% block style %}*/
 /*     <!-- Less -->*/
 /*     <link rel="stylesheet/less" type="text/css" href="{{ asset('/template/css/styles.less') }}" />*/
-/* </head>*/
+/* {% endblock %}*/
 /* */
-/* <body>*/
+/* {% block content %}*/
+/* */
 /*     <div class="container">*/
 /*         <div class="row">*/
 /*             <div class="col-xs-10 col-sm-8 col-md-4">*/
@@ -136,12 +139,13 @@ class __TwigTemplate_c403937bb938534de4b5f9788752df361cf2e4dc10df63a546b4ff826e4
 /*                         </div>*/
 /*                     </div>*/
 /*                 </form>*/
-/*                 <button type="button" class="btn btn-primary btn-lg"><a href="choiceApp.html">Connexion</a></button>*/
+/*                 <button type="button" class="btn btn-primary btn-lg"><a href="{{ path('digital_pilot_choiceApp') }}">Connexion</a></button>*/
 /*             </div>*/
 /*         </div>*/
 /*     </div>*/
-/* </body>*/
 /* */
-/* <script src="{{ asset('/template/less.js/dist/less.min.js') }}" type="text/javascript"></script>*/
+/* {% endblock %}*/
 /* */
-/* </html>*/
+/* */
+/* */
+/* */

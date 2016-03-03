@@ -1,13 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
+
     <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Connexion</title>
+        <!-- Boostrap -->
+        <link rel="stylesheet" href="{{ asset('/template/css/bootstrap.css') }}">
+        <!-- Font awesome -->
+        <link rel="stylesheet" href="{{ asset('/template/font-awesome/css/font-awesome.min.css') }}">
+        {% block style %}{% endblock %}
+
     </head>
+
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+
+
+        {% block javascript %}
+            <script src="{{ asset('/template/less.js/dist/less.min.js') }}" type="text/javascript"></script>
+        {% endblock %}
     </body>
 </html>

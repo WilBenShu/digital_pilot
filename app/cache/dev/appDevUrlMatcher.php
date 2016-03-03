@@ -105,13 +105,18 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // digital_pilot_cms_main_index
+        // digital_pilot_index
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'digital_pilot_cms_main_index');
+                return $this->redirect($pathinfo.'/', 'digital_pilot_index');
             }
 
-            return array (  '_controller' => 'digital_pilot\\CmsBundle\\Controller\\MainController::indexAction',  '_route' => 'digital_pilot_cms_main_index',);
+            return array (  '_controller' => 'digital_pilot\\CmsBundle\\Controller\\MainController::indexAction',  '_route' => 'digital_pilot_index',);
+        }
+
+        // digital_pilot_choiceApp
+        if ($pathinfo === '/choice') {
+            return array (  '_controller' => 'digital_pilot\\CmsBundle\\Controller\\MainController::choiceAction',  '_route' => 'digital_pilot_choiceApp',);
         }
 
         // homepage
