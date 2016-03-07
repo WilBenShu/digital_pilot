@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@digital_pilotCmsBundle/Resources/config/services.yml" }
+    - { resource: "@UserBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -77,3 +78,8 @@ doctrine_mongodb:
     document_managers:
         default:
             auto_mapping: true
+            
+fos_user:
+    db_driver: mongodb
+    firewall_name: main
+    user_class: UserBundle\Document\User

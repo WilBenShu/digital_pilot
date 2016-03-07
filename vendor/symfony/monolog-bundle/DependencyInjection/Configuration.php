@@ -58,6 +58,9 @@ use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
  *   - [max_files]: files to keep, defaults to zero (infinite)
  *   - [level]: level name or int value, defaults to DEBUG
  *   - [bubble]: bool, defaults to true
+ *   - [file_permission]: string|null, defaults to null
+ *   - [filename_format]: string, defaults to '{filename}-{date}'
+ *   - [date_format]: string, defaults to 'Y-m-d'
  *
  * - mongo:
  *   - mongo:
@@ -114,7 +117,7 @@ use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
  *
  * - syslog:
  *   - ident: string
- *   - [facility]: defaults to LOG_USER
+ *   - [facility]: defaults to 'user', use any of the LOG_* facility constant but without LOG_ prefix, e.g. user for LOG_USER
  *   - [logopts]: defaults to LOG_PID
  *   - [level]: level name or int value, defaults to DEBUG
  *   - [bubble]: bool, defaults to true
@@ -122,7 +125,7 @@ use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
  * - syslogudp:
  *   - host: syslogd host name
  *   - [port]: defaults to 514
- *   - [facility]: defaults to LOG_USER
+ *   - [facility]: defaults to 'user', use any of the LOG_* facility constant but without LOG_ prefix, e.g. user for LOG_USER
  *   - [logopts]: defaults to LOG_PID
  *   - [level]: level name or int value, defaults to DEBUG
  *   - [bubble]: bool, defaults to true
@@ -179,10 +182,12 @@ use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
  *   - [bubble]: bool, defaults to true
  *   - [use_ssl]: bool, defaults to true
  *   - [message_format]: text or html, defaults to text
+ *   - [host]: defaults to "api.hipchat.com"
+ *   - [api_version]: defaults to "v1"
  *
  * - slack:
  *   - token: slack api token
- *   - channel: channel name
+ *   - channel: channel name (with starting #)
  *   - [bot_name]: defaults to Monolog
  *   - [icon_emoji]: defaults to null
  *   - [use_attachment]: bool, defaults to true
@@ -230,6 +235,8 @@ use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
  *   - [use_ssl]: whether or not SSL encryption should be used, defaults to true
  *   - [level]: level name or int value, defaults to DEBUG
  *   - [bubble]: bool, defaults to true
+ *   - [timeout]: float
+ *   - [connection_timeout]: float
  *
  * - flowdock:
  *   - token: flowdock api token
@@ -290,6 +297,7 @@ class Configuration implements ConfigurationInterface
                             ->scalarNode('priority')->defaultValue(0)->end()
                             ->scalarNode('level')->defaultValue('DEBUG')->end()
                             ->booleanNode('bubble')->defaultTrue()->end()
+                            ->booleanNode('include_stacktraces')->defaultFalse()->end()
                             ->scalarNode('path')->defaultValue('%kernel.logs_dir%/%kernel.environment%.log')->end() // stream and rotating
                             ->scalarNode('file_permission')  // stream and rotating
                                 ->defaultNull()
@@ -304,6 +312,8 @@ class Configuration implements ConfigurationInterface
                                     })
                                 ->end()
                             ->end()
+                            ->scalarNode('filename_format')->defaultValue('{filename}-{date}')->end() //rotating
+                            ->scalarNode('date_format')->defaultValue('Y-m-d')->end() //rotating
                             ->scalarNode('ident')->defaultFalse()->end() // syslog
                             ->scalarNode('logopts')->defaultValue(LOG_PID)->end() // syslog
                             ->scalarNode('facility')->defaultValue('user')->end() // syslog
@@ -330,6 +340,7 @@ class Configuration implements ConfigurationInterface
                             ->scalarNode('exchange_name')->defaultValue('log')->end() // amqp
                             ->scalarNode('room')->end() // hipchat
                             ->scalarNode('message_format')->defaultValue('text')->end() // hipchat
+                            ->scalarNode('api_version')->defaultNull()->end() // hipchat
                             ->scalarNode('channel')->end() // slack
                             ->scalarNode('bot_name')->defaultValue('Monolog')->end() // slack
                             ->scalarNode('use_attachment')->defaultTrue()->end() // slack
@@ -350,7 +361,7 @@ class Configuration implements ConfigurationInterface
                                 ->end()
                             ->end()
                             ->scalarNode('title')->defaultNull()->end() // pushover
-                            ->scalarNode('host')->end() // syslogudp
+                            ->scalarNode('host')->defaultNull()->end() // syslogudp & hipchat
                             ->scalarNode('port')->defaultValue(514)->end() // syslogudp
                             ->arrayNode('publisher')
                                 ->canBeUnset()
@@ -409,6 +420,9 @@ class Configuration implements ConfigurationInterface
                                     ->scalarNode('id')->end()
                                     ->scalarNode('host')->end()
                                     ->scalarNode('port')->defaultValue(9200)->end()
+                                    ->scalarNode('transport')->defaultValue('Http')->end()
+                                    ->scalarNode('user')->defaultNull()->end()
+                                    ->scalarNode('password')->defaultNull()->end()
                                 ->end()
                                 ->validate()
                                     ->ifTrue(function ($v) {
@@ -453,8 +467,8 @@ class Configuration implements ConfigurationInterface
                             ->end()
                             ->booleanNode('lazy')->defaultValue(true)->end() // swift_mailer
                             ->scalarNode('connection_string')->end() // socket_handler
-                            ->scalarNode('timeout')->end() // socket_handler
-                            ->scalarNode('connection_timeout')->end() // socket_handler
+                            ->scalarNode('timeout')->end() // socket_handler & logentries
+                            ->scalarNode('connection_timeout')->end() // socket_handler & logentries
                             ->booleanNode('persistent')->end() // socket_handler
                             ->scalarNode('dsn')->end() // raven_handler
                             ->scalarNode('client_id')->defaultNull()->end() // raven_handler
@@ -653,6 +667,10 @@ class Configuration implements ConfigurationInterface
                         ->validate()
                             ->ifTrue(function ($v) { return 'hipchat' === $v['type'] && !in_array($v['message_format'], array('text', 'html')); })
                             ->thenInvalid('The message_format has to be "text" or "html" in a HipChatHandler')
+                        ->end()
+                        ->validate()
+                            ->ifTrue(function ($v) { return 'hipchat' === $v['type'] && null !== $v['api_version'] && !in_array($v['api_version'], array('v1', 'v2'), true); })
+                            ->thenInvalid('The api_version has to be "v1" or "v2" in a HipChatHandler')
                         ->end()
                         ->validate()
                             ->ifTrue(function ($v) { return 'slack' === $v['type'] && (empty($v['token']) || empty($v['channel'])); })
