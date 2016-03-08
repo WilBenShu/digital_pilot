@@ -1,4 +1,4 @@
-      {  
+var commercant_table {  
          "id_compte":13,
          "nom":"SCHUH",
          "prenom":"Benjamin",
@@ -26,9 +26,25 @@
       },
 
 
+var pub_table
+   {
+      "id_pub": ,
+      "id_compte": ,
+      "url_dossier":  
+   }
+
+var formulaire_table
+   {
+      "id_form": ,
+      "id_compte": ,
+      "titre": , 
+      "nb_question" , 
+      "...": 
+   }
+
+var compte_table
       {  
          "id_compte":13,
          "login":"Durandil",
-         "password":"*********",
-         "accreditation":3
+         "password":"*********"
       },
