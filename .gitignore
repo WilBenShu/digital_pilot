@@ -1,3 +1,5 @@
 /nbproject/private/
+/vendor/
 /app/cache/
 /app/logs/
+*.log

@@ -1936,7 +1936,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>56dda9b2550416.51864927</argument>
+            <argument>56de733198b384.83180271</argument>
           </service>
         </argument>
       </argument>
@@ -2225,7 +2225,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>56dda9b2550416.51864927</argument>
+            <argument>56de733198b384.83180271</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -3352,6 +3352,10 @@
       <call method="addPath">
         <argument>C:\wamp\www\digital_pilot\src\UserBundle/Resources/views</argument>
         <argument>User</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp\www\digital_pilot\app/Resources/FOSUserBundle/views</argument>
+        <argument>FOSUser</argument>
       </call>
       <call method="addPath">
         <argument>C:\wamp\www\digital_pilot\vendor\friendsofsymfony\user-bundle/Resources/views</argument>
