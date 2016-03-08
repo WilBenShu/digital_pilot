@@ -1,0 +1,90 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 8 mars 2016, 11:36:18
+    Author     : guill_000
+*/
+@BkColorFondForm: rgb(230, 230, 230);
+@BkColorTitreConnexion: rgb(45, 152, 226);
+@BkColorBody: rgb(137, 179, 199);
+
+
+
+/******************* Less ******************/
+html {
+    background-color: rgb(137, 179, 199);
+
+    .container {
+        position: relative;
+        height: 100%;
+        .row {
+            width: 100%;
+            margin: auto;
+            .col-xs-10.col-sm-8.col-md-4 {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, 50%);
+                text-align: center;
+                float: none;
+                margin: 0 auto;
+                padding: 0;
+                height: 250px;
+                .content{
+                    background-color: @BkColorFondForm;
+                    padding-top: 5px;
+                }
+                .erreur{
+                    .bg-danger{
+                        padding: 10px;
+                        margin-bottom: 10px;
+                        border-radius: 8px;
+                    }
+                }
+                .titreConnexion {
+                    margin-top: -25px;
+                    background-color: @BkColorTitreConnexion;
+                    h1 {
+                        color: white;
+                        padding: 15px;
+                        font-size: 22px;
+                        font-family: 'Segoe UI';
+                        font-weight: 100;
+                    }
+                }
+                form{
+                    padding: 5px;
+                    label{
+                        font-size: 15px;
+                        font-family: 'Segoe UI';
+                        font-weight: 400;
+                    }
+                    input[type="submit"]{
+                        margin: 7px;
+                        width: 75%;
+                        background-color: @BkColorTitreConnexion;
+                        font-size: 22px;
+                        font-family: 'Segoe UI';
+                        font-weight: 100;
+                        color: white;
+                        border: none;
+                    }
+                    input[type="submit"]:hover{
+                        color: black;
+                    }
+                    input[class="form-control"]{
+                        width: 60%;
+                        margin: 5px auto;
+                    }
+                }
+            }
+        }
+    }
+}
+
+i{
+    padding: 5px;
+}

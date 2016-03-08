@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class MainController extends Controller
 {
     /**
-     * @Route("/", name="digital_pilot_index")
+     * @Route("/co", name="digital_pilot_index")
      */
     public function indexAction()
     {
