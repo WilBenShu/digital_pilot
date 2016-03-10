@@ -1,6 +1,6 @@
 <?php
 
-namespace digital_pilot\backofficeBundle\Controller;
+namespace DigitalPilot\BackOfficeBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

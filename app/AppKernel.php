@@ -17,10 +17,10 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
-            new digital_pilot\CmsBundle\digital_pilotCmsBundle(),
+            new DigitalPilot\CmsBundle\CmsBundle,
             new UserBundle\UserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new digital_pilot\backofficeBundle\backofficeBundle(),
+            new DigitalPilot\BackOfficeBundle\BackOfficeBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

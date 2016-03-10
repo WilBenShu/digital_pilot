@@ -1,6 +1,6 @@
 <?php
 
-namespace digital_pilot\CmsBundle\Controller;
+namespace DigitalPilot\CmsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
