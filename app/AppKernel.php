@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new digital_pilot\CmsBundle\digital_pilotCmsBundle(),
             new UserBundle\UserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new digital_pilot\backofficeBundle\backofficeBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
