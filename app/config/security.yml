@@ -41,4 +41,4 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/backoffice, role: ROLE_ADMIN }
-        - { path: ^/choiceApp, role: ROLE_USER }
+        - { path: ^/choice, role: ROLE_USER }
