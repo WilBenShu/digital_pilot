@@ -2,6 +2,11 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% block style %}
+<!--Link Less-->
+<link rel="stylesheet/less" type="text/css" href="{{ asset('/template/css/login.less') }}">
+{% endblock %}
+
 
 {% block fos_user_content %}
 

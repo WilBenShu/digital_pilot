@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Connexion</title>
+        <!-- Boostrap -->
+        <link rel="stylesheet" href="{{ asset('/template/css/bootstrap.css') }}">
+        <link rel="stylesheet" type="text/less" href="{{ asset('/template/css/BoMenu.less') }}">
+        <!-- Font awesome -->
+        <link rel="stylesheet" href="{{ asset('/template/font-awesome/css/font-awesome.min.css') }}">
+        {% block style %}{% endblock %}
+        
+    </head>
+
+    <body>
+       
+        
+
+        <nav>
+            
+            <a href="#" class="nav-toggle-btn"></a>
+            
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            
+        </nav>
+        
+        
+        <div class="content">
+            {% block contentBo %}{% endblock %}
+        </div>
+
+        {% block javascript %}
+            <script src="{{ asset('/template/js/jquery-2.2.0.min.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('/template/js/bootstrap.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('/template/less.js/dist/less.min.js') }}" type="text/javascript"></script>
+            <script type="text/javascript">
+        
+        (function() {
+            
+            var bodyEl = $('body'),
+                navToggleBtn = bodyEl.find('.nav-toggle-btn');
+            
+            navToggleBtn.on('click', function(e) {
+                bodyEl.toggleClass('active-nav');
+                e.preventDefault();
+            });
+            
+            
+            
+        })();
+        
+        
+    </script>
+        {% endblock %}
+    </body>
+</html>

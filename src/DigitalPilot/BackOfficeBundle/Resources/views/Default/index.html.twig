@@ -1,8 +1,12 @@
-{% extends 'FOSUserBundle::layout.html.twig' %}
+{% extends "BackOfficeBundle::layout.html.twig" %}
 
-{% block fos_user_content %}
+{% block  style %}
+    <!--Less-->
+    <link rel="stylesheet/less" type="text/css" href="{{ asset('/template/css/BoMenu.less') }}" />
+{% endblock %}
 
-Hello SUPER ADMIN !!!
 
+{% block contentBo %}
+    
 
-{% endblock fos_user_content %}
+{% endblock %}
