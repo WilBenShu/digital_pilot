@@ -9,18 +9,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="page_connexion")
      */
     public function indexAction()
     {
-        return $this->render('UserBundle:Default:index.html.twig');
+        return $this->render('FOSUserBundle:security:login.html.twig', array(
+            'error' => false,
+            'csrf_token' => '',
+            'last_username' => ''
+        ));
     }
     
-        /**
-     * @Route("/choice")
-     */
-    public function indexChoice()
-    {
-        return $this->render('UserBundle:Default:choiceApp.html.twig');
-    }
 }
