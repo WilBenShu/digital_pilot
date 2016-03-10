@@ -2,4 +2,5 @@
 /vendor/
 /app/cache/
 /app/logs/
+/app/cache/dev/
 *.log

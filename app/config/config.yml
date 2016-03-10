@@ -78,8 +78,7 @@ doctrine_mongodb:
     default_database: test_database
     document_managers:
         default:
-            auto_mapping: true
-            
+            auto_mapping: true    
 fos_user:
     db_driver: mongodb
     firewall_name: main
