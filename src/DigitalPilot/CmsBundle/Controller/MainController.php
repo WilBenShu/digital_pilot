@@ -12,7 +12,7 @@ class MainController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('digital_pilotCmsBundle:Default:index.html.twig');
+        return $this->render('CmsBundle:Default:index.html.twig');
     }
 
 }
