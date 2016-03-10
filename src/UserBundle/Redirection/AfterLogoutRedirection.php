@@ -47,6 +47,6 @@ class AfterLogoutRedirection implements LogoutSuccessHandlerInterface
 //        // otherwise we redirect user to the homepage of website
 //        else
 //            $response = new RedirectResponse($this->router->generate('homepage'));
-          return new RedirectResponse($this->router->generate('login'));
+          return new RedirectResponse($this->router->generate('page_connexion'));
     }
 } 
