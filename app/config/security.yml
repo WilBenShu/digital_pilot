@@ -23,6 +23,7 @@ security:
             security: false
 
         main:
+            access_denied_url: /error403
             pattern: ^/
             form_login:
                 provider: fos_userbundle

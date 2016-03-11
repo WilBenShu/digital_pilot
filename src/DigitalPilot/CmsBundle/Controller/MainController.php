@@ -38,6 +38,14 @@ class MainController extends Controller
     {
         return $this->render('CmsBundle:Default:slideshow.html.twig');
     }
+    
+        /**
+     * @Route("/error403", name="error403")
+     */
+    public function error403Action()
+    {
+        return $this->render('CmsBundle:Default:error403.html.twig');
+    }
 
 
 }

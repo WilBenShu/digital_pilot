@@ -1,0 +1,13 @@
+{% extends "CmsBundle::layout.html.twig" %}
+
+{% block style %}
+    <!-- Less -->
+    <link rel="stylesheet/less" type="text/css" href="{{ asset('/template/css/error403.less') }}" />
+{% endblock %}
+
+{% block content %}
+
+<h1>Vous n'avez pas accès à cette page</h1>
+<h3><a href="{{ path('fos_user_security_login') }}">Retour au formulaire de connexion</a></h3>
+{% endblock %}
+
