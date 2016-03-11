@@ -21,11 +21,14 @@
 
         <nav>
             
-            <a href="#" class="nav-toggle-btn"><i class="fa fa-bars fa-2x"></i></a>
+            <a href="#" class="nav-toggle-btn"><i class="fa fa-bars fa-2x"></i><p>Bonjour {{ app.user.username }}</p></a>
             
             <ul>
-                <li><a href="{{ path('userBundle_backoffice') }}">Accueil</a></li>
-                <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+               
+                <li class="iconHome"><i class="fa fa-home fa-2x"></i></li>
+                <li class="title">Back Office</li><hr>
+                <li class="link"><a href="{{ path('userBundle_backoffice') }}">Accueil</a></li>
+                <li class="link"><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
             </ul>
             
         </nav>

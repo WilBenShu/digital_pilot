@@ -14,5 +14,30 @@ class MainController extends Controller
     {
         return $this->render('CmsBundle:Default:index.html.twig');
     }
+    
+    /**
+     * @Route("/bo_commercant", name="bo_commercant")
+     */
+    public function boAction()
+    {
+        return $this->render('CmsBundle:Default:boCommercant.html.twig');
+    }
+    
+    /**
+     * @Route("/customer_management", name="customer_management")
+     */
+    public function customerAction()
+    {
+        return $this->render('CmsBundle:Default:customerManagement.html.twig');
+    }
+    
+    /**
+     * @Route("/slideshow", name="slideshow")
+     */
+    public function slideshowAction()
+    {
+        return $this->render('CmsBundle:Default:slideshow.html.twig');
+    }
+
 
 }
