@@ -12,7 +12,17 @@ class MainController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('CmsBundle:Default:index.html.twig');
+        $currentUser = $this->getUser();
+        
+        $userManager = $this->get('fos_user.user_manager');
+        $users = $userManager->findUsers();
+        
+        //var_dump($currentUser);
+        
+        return $this->render('CmsBundle:Default:index.html.twig', array(
+            'user' => $currentUser
+        ));
+        //return $this->render('CmsBundle:Default:index.html.twig');
     }
     
     /**
