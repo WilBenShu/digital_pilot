@@ -1,0 +1,49 @@
+@BkColorBody: rgb(137, 179, 199);
+@BkColorTitreConnexion: rgb(45, 152, 226);
+@BkColorFondForm: rgb(230, 230, 230);
+
+body {
+    background-color: @BkColorBody;
+    .container {
+        .row {
+            width: 600px;
+            margin: 0 auto;
+            h1 {
+                color: white;
+                font-family: 'Segoe UI';
+                font-weight: 100;
+                margin-bottom: 80px;
+            }
+            .col-xs-2.col-md-3 {
+                width: 200px;
+                margin: auto;
+                a:link {
+                    text-decoration: none;
+                }
+                .thumbnail:hover {
+                    background-color: @BkColorTitreConnexion;
+                }
+                .thumbnail {
+                    background-color: @BkColorFondForm;
+                    height: 300px;
+                    h3,
+                    img {
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(0%, 75%);
+                    }
+                    img {
+                        width: 80px;
+                    }
+                    h3 {
+                        margin-top: 50%;
+                        color: #4a4a4a;
+                        text-align: center;
+                        font-family: 'Segoe UI';
+                        font-weight: 100;
+                    }
+                }
+            }
+        }
+    }
+}

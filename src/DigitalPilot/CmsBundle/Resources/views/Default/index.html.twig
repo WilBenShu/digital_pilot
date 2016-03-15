@@ -2,7 +2,7 @@
 
 {% block style %}
     <!-- Less -->
-    <link rel="stylesheet/less" type="text/css" href="{{ asset('/template/css/choiceApp.less') }}" />
+    <link rel="stylesheet/less" type="text/css" href="{{ asset('/template/css/customerManagement.less') }}" />
 {% endblock %}
 
 {% block content %}
@@ -34,7 +34,7 @@
             <h1 class="text-center">Choix de l'application</h1>
 
             <div class="col-xs-2 col-md-3">
-                <a href="{{ path('bo_commercant') }}" class="thumbnail">
+                <a href="{{ path('bo_commercant', {'user': user }) }}" class="thumbnail">
                     <img src="{{ asset('/template/img/graph.png') }}" alt="Graph icon">
                     <h3>Back Office</h3>
                 </a>
@@ -50,12 +50,13 @@
 
             </div>
             <div class="col-xs-2 col-md-3">
-                <a href="{{ path('slideshow') }}" class="thumbnail">
+                <a href="{{ path('slideshow', {'user': user }) }}" class="thumbnail">
                     <img src="{{ asset('/template/img/play.png') }}" alt="Graph icon">
                     <h3>Slideshow</h3>
                 </a>
 
             </div>
         </div>
+    </div>
 
     {% endblock %}

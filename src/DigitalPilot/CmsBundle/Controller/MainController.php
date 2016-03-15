@@ -38,7 +38,11 @@ class MainController extends Controller
      */
     public function customerAction()
     {
-        return $this->render('CmsBundle:Default:customerManagement.html.twig');
+        $currentUser = $this->getUser();
+        
+        return $this->render('CmsBundle:Default:customerManagement.html.twig', array(
+            'user' => $currentUser
+        ));
     }
     
     /**
