@@ -1,66 +1,65 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-    <head>
+<head>
 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Connexion</title>
-        <!-- Boostrap -->
-        <link rel="stylesheet" href="{{ asset('/template/css/bootstrap.css') }}">
-        <link rel="stylesheet" type="text/less" href="{{ asset('/template/css/BoMenu.less') }}">
-        <!-- Font awesome -->
-        <link rel="stylesheet" href="{{ asset('/template/font-awesome/css/font-awesome.min.css') }}">
-        {% block style %}{% endblock %}
-        
-    </head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <!-- Boostrap -->
+    <link rel="stylesheet" href="{{ asset('/template/css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/less" href="{{ asset('/template/css/BoMenu.less') }}">
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="{{ asset('/template/font-awesome/css/font-awesome.min.css') }}"> {% block style %}{% endblock %}
 
-    <body>
-       
-        
+</head>
 
-        <nav>
-            
-            <a href="#" class="nav-toggle-btn"><i class="fa fa-bars fa-2x"></i><p>Bonjour {{ app.user.username }}</p></a>
-            
-            <ul>
-               
-                <li class="iconHome"><i class="fa fa-home fa-2x"></i></li>
-                <li class="title">Back Office</li><hr>
-                <li class="link"><a href="{{ path('userBundle_backoffice') }}">Accueil</a></li>
-                <li class="link"><a href="{{ path('fos_user_registration_register') }}">Ajouter client</a></li>
-                <li class="link"><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
-            </ul>
-            
-        </nav>
-        
-        
-        <div class="content">
-            {% block contentBo %}{% endblock %}
-        </div>
+<body>
 
-        {% block javascript %}
-            <script src="{{ asset('/template/js/jquery-2.2.0.min.js') }}" type="text/javascript"></script>
-            <script src="{{ asset('/template/js/bootstrap.js') }}" type="text/javascript"></script>
-            <script src="{{ asset('/template/less.js/dist/less.min.js') }}" type="text/javascript"></script>
-            <script type="text/javascript">
-        
-        (function() {
-            
+
+
+    <nav>
+
+        <a href="#" class="nav-toggle-btn"><i class="fa fa-bars fa-2x"></i><p>Bonjour {{ app.user.username }}</p></a>
+
+        <ul>
+
+            <li class="iconHome"><i class="fa fa-home fa-2x"></i></li>
+            <li class="title">Back Office</li>
+            <hr>
+            <li class="link"><a href="{{ path('userBundle_backoffice') }}">Accueil</a></li>
+            <li class="link"><a href="{{ path('fos_user_registration_register') }}">Ajouter client</a></li>
+            <li class="link"><a href="{{ path('fos_user_profile_edit') }}">Modifier</a></li>
+            <li class="link"><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+        </ul>
+
+    </nav>
+
+
+    <div class="content">
+        {% block fos_user_content %} {% endblock fos_user_content %} 
+    </div>
+
+    {% block javascript %}
+    <script src="{{ asset('/template/js/jquery-2.2.0.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/template/js/bootstrap.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/template/less.js/dist/less.min.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        (function () {
+
             var bodyEl = $('body'),
                 navToggleBtn = bodyEl.find('.nav-toggle-btn');
-            
-            navToggleBtn.on('click', function(e) {
+
+            navToggleBtn.on('click', function (e) {
                 bodyEl.toggleClass('active-nav');
                 e.preventDefault();
             });
-            
-            
-            
+
+
+
         })();
-        
-        
     </script>
-        {% endblock %}
-    </body>
+    {% endblock %}
+</body>
+
 </html>

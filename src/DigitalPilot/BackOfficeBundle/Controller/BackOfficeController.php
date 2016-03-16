@@ -14,4 +14,5 @@ class BackOfficeController extends Controller
     {
         return $this->render('BackOfficeBundle:Default:index.html.twig');
     }
+    
 }
