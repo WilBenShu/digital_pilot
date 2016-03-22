@@ -50,7 +50,11 @@ class MainController extends Controller
      */
     public function slideshowAction()
     {
-        return $this->render('CmsBundle:Default:slideshow.html.twig');
+        $currentUser = $this->getUser();
+
+        return $this->render('CmsBundle:Default:slideshow.html.twig', array(
+            'user' => $currentUser
+            ));
     }
     
         /**
