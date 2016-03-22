@@ -2,7 +2,7 @@
 
 {% block style %}
     <!-- Less -->
-    <link rel="stylesheet/less" type="text/css" href="{{ asset('/template/css/customerManagement.less') }}"/>
+    <link rel="stylesheet/less" type="text/css" href="{{ asset('/template/css/profil.less') }}"/>
 {% endblock %}
 
 {% block content %}
@@ -39,61 +39,102 @@
 
         <!-- Content -->
         <div class="row">
-            <h1>Modification du profil</h1>
+            <h1 class="col-md-offset-3">Modification du profil</h1>
             <form class="form-horizontal" role="form" action="{{ path('digital_pilot_profil') }}"
                   method="POST" {{ form_enctype(form) }} >
                 <div class="form-group">
-                    <label class="control-label col-sm-4" for="email">{{ form_label(form.firstName) }}</label>
+                    <label class="control-label col-sm-4" for="profil_form_firstName">
+                        {{ form_errors(form.firstName) }}
+                        {{ form_label(form.firstName) }}
+
+                    </label>
                     <div class="col-sm-6">
-                        <input type="email" class="form-control" id="email" placeholder=" Prenom">
+                        {#<input type="email" class="form-control" id="email" placeholder=" Prenom">#}
+                        {{ form_widget(form.firstName, { 'attr': {'class': 'form-control', 'placeholder': 'Prénom'} }) }}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-4" for="email">{{ form_label(form.lastName) }}</label>
+                    <label class="control-label col-sm-4" for="profil_form_lastName">
+                        {{ form_errors(form.lastName) }}
+                        {{ form_label(form.lastName) }}
+
+                    </label>
                     <div class="col-sm-6">
-                        <input type="email" class="form-control" id="email" placeholder=" Nom">
+                        {{ form_widget(form.lastName, { 'attr': {'class': 'form-control', 'placeholder': 'Nom'} }) }}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-4" for="email">{{ form_label(form.email) }}</label>
+                    <label class="control-label col-sm-4" for="profil_form_email">
+                        {{ form_errors(form.email) }}
+                        {{ form_label(form.email) }}
+
+                    </label>
                     <div class="col-sm-6">
-                        <input type="email" class="form-control" id="email" placeholder=" Email">
+                        {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Email'} }) }}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-4" for="email">{{ form_label(form.phone) }}</label>
+                    <label class="control-label col-sm-4" for="profil_form_phone">
+                        {{ form_errors(form.phone) }}
+                        {{ form_label(form.phone) }}
+
+                    </label>
                     <div class="col-sm-6">
-                        <input type="email" class="form-control" id="email" placeholder=" N° de téléphone">
+                        {{ form_widget(form.phone, { 'attr': {'class': 'form-control', 'placeholder': 'N° de téléphone'} }) }}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-4" for="email">{{ form_label(form.portable) }}</label>
+                    <label class="control-label col-sm-4" for="profil_form_portable">
+                        {{ form_errors(form.portable) }}
+                        {{ form_label(form.portable) }}
+
+                    </label>
                     <div class="col-sm-6">
-                        <input type="email" class="form-control" id="email" placeholder=" N° de portable">
+                        {{ form_widget(form.portable, { 'attr': {'class': 'form-control', 'placeholder': 'N° de portable'} }) }}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-4" for="email">{{ form_label(form.company) }}</label>
+                    <label class="control-label col-sm-4" for="profil_form_address">
+                        {{ form_errors(form.address) }}
+                        {{ form_label(form.address) }}
+
+                    </label>
                     <div class="col-sm-6">
-                        <input type="email" class="form-control" id="email" placeholder=" Entreprise">
+                        {{ form_widget(form.address, { 'attr': {'class': 'form-control', 'placeholder': 'Adresse'} }) }}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-4" for="email">{{ form_label(form.companySize) }}</label>
+                    <label class="control-label col-sm-4" for="profil_form_company">
+                        {{ form_errors(form.company) }}
+                        {{ form_label(form.company) }}
+
+                    </label>
                     <div class="col-sm-6">
-                        <input type="email" class="form-control" id="email" placeholder=" Taille de l'entreprise">
+                        {{ form_widget(form.company, { 'attr': {'class': 'form-control', 'placeholder': 'Entreprise'} }) }}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-4" for="email">{{ form_label(form.companyAddress) }}</label>
+                    <label class="control-label col-sm-4" for="profil_form_companySize">
+                        {{ form_errors(form.companySize) }}
+                        {{ form_label(form.companySize) }}
+
+                    </label>
                     <div class="col-sm-6">
-                        <input type="email" class="form-control" id="email" placeholder=" Adresse de l'entreprise">
+                        {{ form_widget(form.companySize, { 'attr': {'class': 'form-control', 'placeholder': 'Taille de l\'entreprise'} }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="profil_form_companyAddress">
+                        {{ form_errors(form.companyAddress) }}
+                        {{ form_label(form.companyAddress) }}
+
+                    </label>
+                    <div class="col-sm-6">
+                        {{ form_widget(form.companyAddress, { 'attr': {'class': 'form-control', 'placeholder': 'Adresse de l\'entreprise'} }) }}
                     </div>
                 </div>
 
-                {# {{ form_rest(form) }} #}
-
-                <button type="submit" class="btn btn-info">Valider</button>
+                <button type="submit" class="btn btn-info col-md-offset-6">Valider</button>
             </form>
         </div>
         <!-- /.row -->
