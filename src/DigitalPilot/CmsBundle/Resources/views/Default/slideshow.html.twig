@@ -1,1 +1,18 @@
-bienvenue dans le slideshow
+{% extends "CmsBundle::layout.html.twig" %}
+
+{% block content %}
+    <h3>Information</h3>
+    Choisissez une photo à télécharger. Attention celle-ci doit avoir un poids inférieur à 2Go et doit avoir pour extension *.avi,
+     *.mkv.
+    <br><br>
+
+    <form enctype="multipart/form-data" action="up" method="POST" >
+        <div class="form-group col-sm-4 col-sm-offset-4">
+            <div id="previewUpload"></div>
+            <label for="upload">Sélectionner un fichier</label>
+            <input type="file" id="upload" name="telecharger" onChange="readURL(this)"><br>
+
+            <input type="submit" value="Envoyer" name="valider" class="btn btn-primary" role="button">
+        </div>
+    </form>
+{% endblock %}
