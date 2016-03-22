@@ -5,3 +5,4 @@
 /app/cache/dev/
 *.log
 *.data
+app/cache/dev/appDevDebugProjectContainer.php

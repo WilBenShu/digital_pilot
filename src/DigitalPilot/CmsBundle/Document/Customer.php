@@ -2,7 +2,7 @@
 
 namespace DigitalPilot\CmsBundle\Document;
 
-
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
 /**
@@ -17,16 +17,22 @@ class Customer
     protected $id;
 
     /**
+     * @Assert\NotBlank()
+     *
      * @MongoDB\String
      */
-    protected $name;
+    protected $firstName;
 
     /**
+     * @Assert\NotBlank()
+     *
      * @MongoDB\String
      */
-    protected $forname;
+    protected $lastName;
 
     /**
+     * @Assert\Email(message="L'email '{{ value }}' n'est pas valide.", checkMX = true)
+     *
      * @MongoDB\String
      */
     protected $email;
@@ -42,11 +48,15 @@ class Customer
     protected $portable;
     
     /**
+     * @Assert\NotBlank()
+     *
      * @MongoDB\String
      */
     protected $address;
     
     /**
+     * @Assert\NotBlank()
+     *
      * @MongoDB\String
      */
     protected $company;
@@ -63,7 +73,7 @@ class Customer
 
     public function __construct()
     {
-        parent::__construct();
+        //parent::__construct();
         // your own logic
     }
 
@@ -79,47 +89,47 @@ class Customer
     }
 
     /**
-     * Set name
+     * Set firstName
      *
-     * @param string $name
+     * @param string $firstName
      * @return self
      */
-    public function setName($name)
+    public function setFirstName($firstName)
     {
-        $this->name = $name;
+        $this->firstName = $firstName;
         return $this;
     }
 
     /**
-     * Get name
+     * Get firstName
      *
-     * @return string $name
+     * @return string $firstName
      */
-    public function getName()
+    public function getFirstName()
     {
-        return $this->name;
+        return $this->firstName;
     }
 
     /**
-     * Set forname
+     * Set lastName
      *
-     * @param string $forname
+     * @param string $lastName
      * @return self
      */
-    public function setForname($forname)
+    public function setLastName($lastName)
     {
-        $this->forname = $forname;
+        $this->lastName = $lastName;
         return $this;
     }
 
     /**
-     * Get forname
+     * Get lastName
      *
-     * @return string $forname
+     * @return string $lastName
      */
-    public function getForname()
+    public function getLastName()
     {
-        return $this->forname;
+        return $this->lastName;
     }
 
     /**
