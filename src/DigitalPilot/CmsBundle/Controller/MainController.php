@@ -20,7 +20,7 @@ class MainController extends Controller
         $userManager = $this->get('fos_user.user_manager');
         $users = $userManager->findUsers();
         
-        var_dump($users);
+        //var_dump($users);
         
         return $this->render('CmsBundle:Default:index.html.twig', array(
             'user' => $currentUser
