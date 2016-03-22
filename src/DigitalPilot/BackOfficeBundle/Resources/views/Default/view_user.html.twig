@@ -1,0 +1,19 @@
+{% extends "BackOfficeBundle::layout.html.twig" %} 
+
+{% block style %}
+<!--Less-->
+<link rel="stylesheet/less" type="text/css" href="{{ asset('/template/css/BoMenu.less') }}" />
+<link rel="stylesheet/less" type="text/css" href="{{ asset('/template/css/listClient.less') }}" />
+ {% endblock %} 
+ 
+ {% block fos_user_content %}
+   <div class="row">
+       <div class="col-md-2 col-md-offset-1">
+            {% for user in user %}
+            <p>
+                {{ user.username }}
+            </p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock fos_user_content %}
