@@ -20,8 +20,34 @@ class Pub
 
     /**
      * @MongoDB\String
+     * @Assert\NotBlank()
      */
     protected $name;
+
+    /**
+     * 
+     * @Vich\UploadableField(mapping="product_image", fileNameProperty="imageName")
+     * 
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @MongoDB\String
+     * @Assert\NotBlank()
+     *
+     * @var string
+     */
+    private $imageName;
+
+    /**
+     * @MongoDB\Date
+     *
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    
 
     public function __construct()
     {
