@@ -20,7 +20,6 @@ class AppKernel extends Kernel
             new DigitalPilot\CmsBundle\CmsBundle,
             new UserBundle\UserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new Vich\UploaderBundle\VichUploaderBundle(),
             new DigitalPilot\BackOfficeBundle\BackOfficeBundle(),
         );
 
