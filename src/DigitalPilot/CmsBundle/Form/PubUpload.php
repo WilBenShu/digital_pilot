@@ -11,14 +11,12 @@ class PubUpload extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('firstName','text',array('label'=>"Prénom"));
-        $builder->add('lastName','text',array('label'=>"Nom"));
-        $builder->add('email','email',array('label'=>"Email"));
-        $builder->add('message','textarea',array('label'=>"Message"));
+        $builder->add('imageName','text',array('label'=>"nom"));
+        $builder->add('imageFile','File',array('input'=>"fichier"));
     }
 
     public function getForm()
     {
-        return 'form';
+        return 'pub_form';
     }
 }

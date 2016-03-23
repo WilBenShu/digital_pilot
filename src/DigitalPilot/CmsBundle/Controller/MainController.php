@@ -3,8 +3,13 @@
 namespace DigitalPilot\CmsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 use DigitalPilot\CmsBundle\Document\Customer;
+use DigitalPilot\CmsBundle\Document\Publicite;
+
 use DigitalPilot\CmsBundle\Form\ProfilType;
+use DigitalPilot\CmsBundle\Form\PubUpload;
+
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -49,14 +54,17 @@ class MainController extends Controller
     }
     
     /**
-     * @Route("/slideshow", name="slideshow")
+     * @Route("/slideshow", name="digital_pilot_slideshow")
      */
     public function slideshowAction()
     {
         $currentUser = $this->getUser();
+        $pub = new Publicite();
+        $form = $this->createForm(new PubUpload(), $pub);
 
         return $this->render('CmsBundle:Default:slideshow.html.twig', array(
-            'user' => $currentUser
+            'user' => $currentUser,
+            'form' => $form->createView()
             ));
     }
     

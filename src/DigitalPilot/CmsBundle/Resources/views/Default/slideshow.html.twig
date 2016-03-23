@@ -27,7 +27,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-user"></i> {{ user.username }}<span class="caret"></span></a>
+                            <i class="fa fa-user"></i> lolz<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Profil</a></li>
                             <li role="separator" class="divider"></li>
@@ -45,7 +45,26 @@
     <p>- pour une image: *.png, *.jpeg </p>
     <br>
 
-    <form enctype="multipart/form-data" action="up" method="POST" >
+    <div class="row">
+        <form class="form-horizontal" role="form" action="{{ path('digital_pilot_slideshow') }}"
+                  method="POST" {{ form_enctype(form) }} >
+            <div class="form-group">
+                <label class="control-label col-sm-4" for="pub_form_imageName">
+                 {#<input type="String" class="form-control" id="nom" placeholder=" Prenom">#}
+                 {{ form_widget(form.imageName, { 'attr': {'class': 'form-control', 'placeholder': 'Intitulé de votre publicité'} }) }}
+            </div>  
+            <div class="form-group">
+                <label class="control-label col-sm-4" for="pub_form_imageName">
+                 {#<input type="file" id="fichier" name="telecharger">#}
+                 {{ form_widget(form.imageFile.file, { 'attr': {'class': 'form-control', 'placeholder': 'Intitulé de votre publicité'} }) }}
+            </div>  
+            <button type="submit" class="btn btn-info col-md-offset-6">Valider</button> 
+        </form>
+    </div>
+ 
+{% endblock %}
+
+<!--     <form enctype="multipart/form-data" action="up" method="POST" >
         <div class="form-group col-sm-4 col-sm-offset-4">
             <div id="previewUpload"></div>
             <label for="upload">Sélectionner un fichier</label>
@@ -53,5 +72,4 @@
 
             <input type="submit" value="Envoyer" name="valider" class="btn btn-primary" role="button">
         </div>
-    </form>
-{% endblock %}
+    </form> -->
