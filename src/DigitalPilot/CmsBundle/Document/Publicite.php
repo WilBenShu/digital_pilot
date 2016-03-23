@@ -3,9 +3,12 @@
 namespace DigitalPilot\CmsBundle\Document;
 
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use DigitalPilot\CmsBundle\Form\PubUpload;
 
 /**
  * @MongoDB\Document(repositoryClass="DigitalPilot\CmsBundle\Repository\PubRepository")
@@ -30,7 +33,7 @@ class Publicite
      * 
      * @Vich\UploadableField(mapping="product_image", fileNameProperty="imageName")
      * 
-     * @var file
+     * @var File
      */
     private $imageFile;
 
@@ -62,7 +65,7 @@ class Publicite
     /**
      * @param string $imageName
      *
-     * @return Product
+     * @return Publicite
      */
     public function setImageName($imageName)
     {
@@ -81,12 +84,11 @@ class Publicite
 
 
     /**
-     * @return File
-     */
-    public function getImageFile()
-    {
-        return $this->imageFile;
-    }
+    * @param File $imageFile
+    *
+    * @return Publicite
+    */
+
 
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
@@ -95,7 +97,7 @@ class Publicite
      * must be able to accept an instance of 'File' as the bundle will inject one here
      * during Doctrine hydration.
      *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $imageFile
      *
      * @return Publicite
      */
@@ -110,6 +112,14 @@ class Publicite
         }
 
         return $this;
+    }
+
+    /**
+     * @return File |\Symfony\Component\HttpFoundation\File\File $imageFile
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
     }
 
 

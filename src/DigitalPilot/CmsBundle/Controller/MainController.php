@@ -68,7 +68,7 @@ class MainController extends Controller
             ));
     }
     
-        /**
+    /**
      * @Route("/error403", name="error403")
      */
     public function error403Action()
