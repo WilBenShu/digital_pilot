@@ -20,6 +20,8 @@
                         <ul class="dropdown-menu">
                             <li><a href="{{ path('digital_pilot_profil') }}">Profil</a></li>
                             <li role="separator" class="divider"></li>
+                            <li><a href="">Informations de connexion</a></li>
+                            <li role="separator" class="divider"></li>
                             <li><a href="{{ path('fos_user_security_logout') }}">Deconnexion</a></li>
                         </ul>
                     </li>
@@ -50,7 +52,7 @@
 
             </div>
             <div class="col-xs-2 col-md-3">
-                <a href="{{ path('slideshow', {'user': user }) }}" class="thumbnail">
+                <a href="{{ path('digital_pilot_slideshow', {'user': user }) }}" class="thumbnail">
                     <img src="{{ asset('/template/img/play.png') }}" alt="Graph icon">
                     <h3>Slideshow</h3>
                 </a>

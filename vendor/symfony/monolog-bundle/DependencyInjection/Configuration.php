@@ -168,10 +168,12 @@ use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
  *   - client_id: Raven client custom service id (optional)
  *   - [level]: level name or int value, defaults to DEBUG
  *   - [bubble]: bool, defaults to true
+ *   - [auto_stack_logs]: bool, defaults to false
  *
  * - newrelic:
  *   - [level]: level name or int value, defaults to DEBUG
  *   - [bubble]: bool, defaults to true
+ *   - [app_name]: new relic app name, default null
  *
  * - hipchat:
  *   - token: hipchat api token
@@ -297,6 +299,7 @@ class Configuration implements ConfigurationInterface
                             ->scalarNode('priority')->defaultValue(0)->end()
                             ->scalarNode('level')->defaultValue('DEBUG')->end()
                             ->booleanNode('bubble')->defaultTrue()->end()
+                            ->scalarNode('app_name')->defaultNull()->end()
                             ->booleanNode('include_stacktraces')->defaultFalse()->end()
                             ->scalarNode('path')->defaultValue('%kernel.logs_dir%/%kernel.environment%.log')->end() // stream and rotating
                             ->scalarNode('file_permission')  // stream and rotating
@@ -472,6 +475,7 @@ class Configuration implements ConfigurationInterface
                             ->booleanNode('persistent')->end() // socket_handler
                             ->scalarNode('dsn')->end() // raven_handler
                             ->scalarNode('client_id')->defaultNull()->end() // raven_handler
+                            ->scalarNode('auto_log_stacks')->defaultFalse()->end() // raven_handler
                             ->scalarNode('message_type')->defaultValue(0)->end() // error_log
                             ->arrayNode('tags') // loggly
                                 ->beforeNormalization()
@@ -599,6 +603,7 @@ class Configuration implements ConfigurationInterface
                                 ->end()
                             ->end()
                             ->scalarNode('formatter')->end()
+                            ->booleanNode('nested')->defaultFalse()->end()
                         ->end()
                         ->validate()
                             ->ifTrue(function ($v) { return 'service' === $v['type'] && !empty($v['formatter']); })
