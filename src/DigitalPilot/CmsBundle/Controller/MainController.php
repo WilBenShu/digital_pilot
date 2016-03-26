@@ -4,7 +4,7 @@ namespace DigitalPilot\CmsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use DigitalPilot\CmsBundle\Document\Customer;
+use DigitalPilot\CmsBundle\Document\Trader;
 use DigitalPilot\CmsBundle\Document\Publicite;
 
 use DigitalPilot\CmsBundle\Form\ProfilType;
@@ -81,9 +81,37 @@ class MainController extends Controller
      */
     public function profilAction(Request $request)
     {
+        $dm = $this->get('doctrine_mongodb')->getManager()->getRepository('CmsBundle:Trader');
+
         $currentUser = $this->getUser();
-        $customer = new Customer();
-        $form = $this->createForm(new ProfilType(), $customer);
+        $currentTrader = $dm->findOneByEmail($currentUser->getEmail());
+
+        // IF CUSTOMER DON'T EXIST
+        // ADD NEW CUSTOMER WITH EMAIL ONLY IF NOT EXIST
+        if($currentTrader == NULL) {
+            $dm2 = $this->get('doctrine_mongodb')->getManager();
+
+            $trader = new Trader();
+            $trader->setFirstName('');
+            $trader->setLastName('');
+            $trader->setEmail($currentUser->getEmail());
+            $trader->setPhone('');
+            $trader->setPortable('');
+            $trader->setAddress('');
+            $trader->setCompany('');
+            $trader->setCompanySize('');
+            $trader->setCompanyAddress('');
+
+            $currentTrader = $trader;
+
+            // Add le customer dans la table customer
+            $dm2->persist($trader);
+            $dm2->flush();
+        }
+
+
+        $trader = new Trader();
+        $form = $this->createForm(new ProfilType(), $trader);
 
         if ($request->isMethod('POST')) {
             $form->bind($request);
@@ -91,20 +119,22 @@ class MainController extends Controller
                 //Actions à effecter après validation du form
                 $this->get('session')->getFlashBag()->add('notice', "Votre profil a bien été modifié ! ");
 
-                // Add le customer dans la table customer
-                $em = $this->getDoctrine()->getManager();
-                //$customerRepository = $em->getRepository('CmsBundle:Customer');
-
-               // $em->persist($customer);
-               // $em->flush();
-
-                //Redirection afin d'éviter de 're-posting'
-                return $this->redirect($this->generateUrl('digital_pilot_profil'));
+                // Update le customer dans la table customer
+                $currentTrader = $dm->updateOneByMail($currentUser->getEmail(),
+                    $trader->getFirstName(),
+                    $trader->getLastName(),
+                    $trader->getPhone(),
+                    $trader->getPortable(),
+                    $trader->getAddress(),
+                    $trader->getCompany(),
+                    $trader->getCompanySize(),
+                    $trader->getCompanyAddress());
             }
         }
 
         return $this->render('CmsBundle:Default:profil.html.twig', array(
             'user' => $currentUser,
+            'customer' => $currentTrader,
             'form' => $form->createView()
         ));
     }
