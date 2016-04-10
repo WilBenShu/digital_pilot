@@ -20,6 +20,7 @@
       <parameter key="CmsBundle">DigitalPilot\CmsBundle\CmsBundle</parameter>
       <parameter key="UserBundle">UserBundle\UserBundle</parameter>
       <parameter key="FOSUserBundle">FOS\UserBundle\FOSUserBundle</parameter>
+      <parameter key="VichUploaderBundle">Vich\UploaderBundle\VichUploaderBundle</parameter>
       <parameter key="BackOfficeBundle">DigitalPilot\BackOfficeBundle\BackOfficeBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
@@ -606,6 +607,20 @@
       <parameter>ResetPassword</parameter>
       <parameter>Default</parameter>
     </parameter>
+    <parameter key="vich_uploader.default_filename_attribute_suffix">_name</parameter>
+    <parameter key="vich_uploader.mappings" type="collection">
+      <parameter key="product_image" type="collection">
+        <parameter key="uri_prefix">/images/pubs</parameter>
+        <parameter key="upload_destination">C:\wamp\www\digital_pilot\app/../web/images/pubs</parameter>
+        <parameter key="namer">null</parameter>
+        <parameter key="directory_namer">null</parameter>
+        <parameter key="delete_on_remove">true</parameter>
+        <parameter key="delete_on_update">true</parameter>
+        <parameter key="inject_on_load">false</parameter>
+        <parameter key="db_driver">mongodb</parameter>
+      </parameter>
+    </parameter>
+    <parameter key="vich_uploader.file_injector.class">Vich\UploaderBundle\Injector\FileInjector</parameter>
     <parameter key="web_profiler.controller.profiler.class">Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController</parameter>
     <parameter key="web_profiler.controller.router.class">Symfony\Bundle\WebProfilerBundle\Controller\RouterController</parameter>
     <parameter key="web_profiler.controller.exception.class">Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController</parameter>
@@ -1241,6 +1256,10 @@
               <argument key="FOS\UserBundle\Form\Type\ChangePasswordFormType">fos_user.change_password.form.type</argument>
               <argument key="fos_user_resetting">fos_user.resetting.form.type</argument>
               <argument key="FOS\UserBundle\Form\Type\ResettingFormType">fos_user.resetting.form.type</argument>
+              <argument key="vich_file">vich_uploader.form.type.file</argument>
+              <argument key="Vich\UploaderBundle\Form\Type\VichFileType">vich_uploader.form.type.file</argument>
+              <argument key="vich_image">vich_uploader.form.type.image</argument>
+              <argument key="Vich\UploaderBundle\Form\Type\VichImageType">vich_uploader.form.type.image</argument>
             </argument>
             <argument type="collection">
               <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="collection">
@@ -1944,11 +1963,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-<<<<<<< HEAD
-            <argument>56f28aed61cc43.25044310</argument>
-=======
-            <argument>56f66b550afc02.54339857</argument>
->>>>>>> origin/master
+            <argument>570a6707d2f472.05632817</argument>
           </service>
         </argument>
       </argument>
@@ -2263,11 +2278,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-<<<<<<< HEAD
-            <argument>56f28aed61cc43.25044310</argument>
-=======
-            <argument>56f66b550afc02.54339857</argument>
->>>>>>> origin/master
+            <argument>570a6707d2f472.05632817</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -2539,6 +2550,14 @@
         <argument type="service">
           <service class="Doctrine\Bundle\DoctrineBundle\Twig\DoctrineExtension" public="false">
             <tag name="twig.extension"/>
+          </service>
+        </argument>
+      </call>
+      <call method="addExtension">
+        <argument type="service">
+          <service class="Vich\UploaderBundle\Twig\Extension\UploaderExtension" public="false">
+            <tag name="twig.extension"/>
+            <argument type="service" id="vich_uploader.templating.helper.uploader_helper"/>
           </service>
         </argument>
       </call>
@@ -3099,6 +3118,98 @@
       <argument type="service" id="router"/>
       <argument>86400</argument>
     </service>
+    <service id="vich_uploader.upload_handler" class="Vich\UploaderBundle\Handler\UploadHandler">
+      <argument type="service" id="vich_uploader.property_mapping_factory"/>
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+      <argument type="service" id="vich_uploader.file_injector"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+    </service>
+    <service id="vich_uploader.storage.file_system" class="Vich\UploaderBundle\Storage\FileSystemStorage">
+      <argument type="service" id="vich_uploader.property_mapping_factory"/>
+    </service>
+    <service id="vich_uploader.file_injector" class="Vich\UploaderBundle\Injector\FileInjector">
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+    </service>
+    <service id="vich_uploader.templating.helper.uploader_helper" class="Vich\UploaderBundle\Templating\Helper\UploaderHelper">
+      <tag name="templating.helper" alias="vich_uploader"/>
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+    </service>
+    <service id="vich_uploader.metadata_reader" class="Vich\UploaderBundle\Metadata\MetadataReader" public="false">
+      <argument type="service">
+        <service class="Metadata\MetadataFactory" public="false">
+          <argument type="service">
+            <service class="Vich\UploaderBundle\Metadata\Driver\ChainDriver" public="false">
+              <argument type="collection">
+                <argument type="service">
+                  <service class="Vich\UploaderBundle\Metadata\Driver\AnnotationDriver" public="false">
+                    <argument type="service" id="annotation_reader"/>
+                  </service>
+                </argument>
+                <argument type="service">
+                  <service class="Vich\UploaderBundle\Metadata\Driver\YamlDriver" public="false">
+                    <argument type="service">
+                      <service class="Vich\UploaderBundle\Metadata\Driver\FileLocator" public="false">
+                        <argument type="collection"/>
+                      </service>
+                    </argument>
+                  </service>
+                </argument>
+                <argument type="service">
+                  <service class="Vich\UploaderBundle\Metadata\Driver\XmlDriver" public="false">
+                    <argument type="service">
+                      <service class="Vich\UploaderBundle\Metadata\Driver\FileLocator" public="false">
+                        <argument type="collection"/>
+                      </service>
+                    </argument>
+                  </service>
+                </argument>
+              </argument>
+            </service>
+          </argument>
+          <call method="setCache">
+            <argument type="service">
+              <service class="Metadata\Cache\FileCache" public="false">
+                <argument>C:\wamp\www\digital_pilot\app\cache\dev/vich_uploader</argument>
+              </service>
+            </argument>
+          </call>
+        </service>
+      </argument>
+    </service>
+    <service id="vich_uploader.property_mapping_factory" class="Vich\UploaderBundle\Mapping\PropertyMappingFactory" public="false">
+      <argument type="service" id="service_container"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="collection">
+        <argument key="product_image" type="collection">
+          <argument key="uri_prefix">/images/pubs</argument>
+          <argument key="upload_destination">C:\wamp\www\digital_pilot\app/../web/images/pubs</argument>
+          <argument key="namer">null</argument>
+          <argument key="directory_namer">null</argument>
+          <argument key="delete_on_remove">true</argument>
+          <argument key="delete_on_update">true</argument>
+          <argument key="inject_on_load">false</argument>
+          <argument key="db_driver">mongodb</argument>
+        </argument>
+      </argument>
+      <argument>_name</argument>
+    </service>
+    <service id="vich_uploader.storage_factory" class="Vich\UploaderBundle\Storage\StorageFactory">
+      <argument type="service" id="service_container"/>
+    </service>
+    <service id="vich_uploader.namer_uniqid" class="Vich\UploaderBundle\Naming\UniqidNamer"/>
+    <service id="vich_uploader.namer_origname" class="Vich\UploaderBundle\Naming\OrignameNamer"/>
+    <service id="vich_uploader.form.type.file" class="Vich\UploaderBundle\Form\Type\VichFileType">
+      <tag name="form.type" alias="vich_file"/>
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+      <argument type="service" id="translator"/>
+    </service>
+    <service id="vich_uploader.form.type.image" class="Vich\UploaderBundle\Form\Type\VichImageType">
+      <tag name="form.type" alias="vich_image"/>
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+      <argument type="service" id="translator"/>
+    </service>
     <service id="data_collector.dump" class="Symfony\Component\HttpKernel\DataCollector\DumpDataCollector">
       <tag name="data_collector" id="dump" template="@Debug/Profiler/dump.html.twig" priority="240"/>
       <argument type="service" id="debug.stopwatch" on-invalid="ignore"/>
@@ -3429,6 +3540,10 @@
         <argument>FOSUser</argument>
       </call>
       <call method="addPath">
+        <argument>C:\wamp\www\digital_pilot\vendor\vich\uploader-bundle/Resources/views</argument>
+        <argument>VichUploader</argument>
+      </call>
+      <call method="addPath">
         <argument>C:\wamp\www\digital_pilot\src\DigitalPilot\BackOfficeBundle/Resources/views</argument>
         <argument>BackOffice</argument>
       </call>
@@ -3523,9 +3638,48 @@
       <argument type="service" id="service_container"/>
       <call method="addEventSubscriber">
         <argument type="service">
+          <service class="Vich\UploaderBundle\EventListener\Doctrine\CleanListener" public="false">
+            <tag name="doctrine_mongodb.odm.event_subscriber" priority="50"/>
+            <argument>product_image</argument>
+            <argument type="service">
+              <service class="Vich\UploaderBundle\Adapter\ODM\MongoDB\MongoDBAdapter" public="false"/>
+            </argument>
+            <argument type="service" id="vich_uploader.metadata_reader"/>
+            <argument type="service" id="vich_uploader.upload_handler"/>
+          </service>
+        </argument>
+      </call>
+      <call method="addEventSubscriber">
+        <argument type="service">
           <service class="FOS\UserBundle\Doctrine\UserListener" public="false">
             <tag name="doctrine_mongodb.odm.event_subscriber"/>
             <argument type="service" id="service_container"/>
+          </service>
+        </argument>
+      </call>
+      <call method="addEventSubscriber">
+        <argument type="service">
+          <service class="Vich\UploaderBundle\EventListener\Doctrine\RemoveListener" public="false">
+            <tag name="doctrine_mongodb.odm.event_subscriber" priority="0"/>
+            <argument>product_image</argument>
+            <argument type="service">
+              <service class="Vich\UploaderBundle\Adapter\ODM\MongoDB\MongoDBAdapter" public="false"/>
+            </argument>
+            <argument type="service" id="vich_uploader.metadata_reader"/>
+            <argument type="service" id="vich_uploader.upload_handler"/>
+          </service>
+        </argument>
+      </call>
+      <call method="addEventSubscriber">
+        <argument type="service">
+          <service class="Vich\UploaderBundle\EventListener\Doctrine\UploadListener" public="false">
+            <tag name="doctrine_mongodb.odm.event_subscriber" priority="0"/>
+            <argument>product_image</argument>
+            <argument type="service">
+              <service class="Vich\UploaderBundle\Adapter\ODM\MongoDB\MongoDBAdapter" public="false"/>
+            </argument>
+            <argument type="service" id="vich_uploader.metadata_reader"/>
+            <argument type="service" id="vich_uploader.upload_handler"/>
           </service>
         </argument>
       </call>
@@ -3581,6 +3735,7 @@
     <service id="doctrine_mongodb.odm.document_manager" alias="doctrine_mongodb.odm.default_document_manager"/>
     <service id="doctrine.odm.mongodb.document_manager" alias="doctrine_mongodb.odm.default_document_manager"/>
     <service id="fos_user.util.username_canonicalizer" alias="fos_user.util.email_canonicalizer"/>
+    <service id="vich_uploader.storage" alias="vich_uploader.storage.file_system"/>
     <service id="console.command.sensiolabs_security_command_securitycheckercommand" alias="sensio_distribution.security_checker.command"/>
   </services>
 </container>
