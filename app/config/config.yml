@@ -83,3 +83,11 @@ fos_user:
     db_driver: mongodb
     firewall_name: main
     user_class: UserBundle\Document\User
+
+vich_uploader:
+    db_driver: mongodb # or orm or propel or phpcr
+
+    mappings:
+        product_image:
+            uri_prefix: /images/pubs
+            upload_destination: %kernel.root_dir%/../web/images/pubs
