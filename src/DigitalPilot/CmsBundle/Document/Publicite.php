@@ -6,13 +6,10 @@ namespace DigitalPilot\CmsBundle\Document;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-<<<<<<< HEAD
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use DigitalPilot\CmsBundle\Form\PubUpload;
-=======
-use Symfony\Component\Validator\Constraints as Assert;
->>>>>>> origin/master
+
 
 /**
  * @MongoDB\Document(repositoryClass="DigitalPilot\CmsBundle\Repository\PubRepository")
