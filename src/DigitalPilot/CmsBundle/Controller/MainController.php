@@ -139,5 +139,17 @@ class MainController extends Controller
         ));
     }
 
+    /**
+     * @Route("/connexionInformations", name="connexionInformations")
+     */
+    public function connexionInformationsAction(Request $request)
+    {
+        $currentUser = $this->getUser();
+
+        return $this->render('CmsBundle:Default:connexionInformation.html.twig', array(
+            'user' => $currentUser
+        ));
+    }
+
 
 }
