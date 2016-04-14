@@ -11,7 +11,7 @@
        <div class="col-md-2 col-md-offset-1">
             {% for user in user %}
             <p>
-                {{ user.username }}
+                <a href="{{ path('info_user', { 'email': user.email }) }}">{{ user.username }}</a>
             </p>
             {% endfor %}
         </div>

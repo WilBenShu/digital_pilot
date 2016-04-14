@@ -1,4 +1,9 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends "FOSUserBundle::layoutBo.html.twig" %}
+
+{% block style %}
+<!--Link Less-->
+<link rel="stylesheet/less" type="text/css" href="{{ asset('/template/css/register.less') }}">
+{% endblock %}
 
 {% block fos_user_content %}
 {% include "FOSUserBundle:Profile:edit_content.html.twig" %}

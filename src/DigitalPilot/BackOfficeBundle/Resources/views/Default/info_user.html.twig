@@ -1,0 +1,72 @@
+{% extends "BackOfficeBundle::layout.html.twig" %} 
+
+{% block style %}
+<!--Less-->
+<link rel="stylesheet/less" type="text/css" href="{{ asset('/template/css/BoMenu.less') }}" />
+<link rel="stylesheet/less" type="text/css" href="{{ asset('/template/css/infoUser.less') }}" />
+{% endblock %} 
+   
+{% block fos_user_content %}
+  <div class="block">
+   {% if allTraders.lastName is empty %}
+      <p class="empty"><label>Nom de famille :</label> Pas encore renseigné<br></p>
+   {% else %}
+       <p><label>Nom de famille :</label> {{allTraders.lastName}}<br></p>
+   {% endif %}
+   
+      {% if allTraders.firstName is empty %}
+      <p class="empty"><label>Prénom :</label> Pas encore renseigné<br></p>
+   {% else %}
+       <p><label>Prénom :</label> {{allTraders.firstName}}<br></p>
+   {% endif %}
+   
+      {% if allTraders.email is empty %}
+      <p class="empty"></label>Email :</label> Pas encore renseigné<br></p>
+   {% else %}
+       <p><label>Email :</label> {{allTraders.email}}<br></p>
+   {% endif %}
+   
+      {% if allTraders.phone is empty %}
+      <p class="empty"><label>Numéro de téléphone :</label> Pas encore renseigné<br></p>
+   {% else %}
+       <p><label>Numéro de téléphone :</label> {{allTraders.phone}}<br></p>
+   {% endif %}
+   
+      {% if allTraders.portable is empty %}
+      <p class="empty"><label>Numéro de portable :</label> Pas encore renseigné<br></p>
+   {% else %}
+       <p><label>Numéro de portable :</label> {{allTraders.portable}}<br></p>
+   {% endif %}
+   
+      {% if allTraders.address is empty %}
+      <p class="empty"><label>Adresse :</label> Pas encore renseigné<br></p>
+   {% else %}
+       <p><label>Adresse :</label> {{allTraders.address}}<br></p>
+   {% endif %}
+   
+      {% if allTraders.company is empty %}
+      <p class="empty"><label>Entreprise :</label> Pas encore renseigné<br></p>
+   {% else %}
+       <p><label>Entreprise :</label> {{allTraders.company}}<br></p>
+   {% endif %}
+   
+    {% if allTraders.companySize is empty %}
+      <p class="empty"><label>Taille entreprise :</label> Pas encore renseigné<br></p>
+   {% else %}
+       <p><label>Taille entreprise :</label> {{allTraders.companySize}}<br></p>
+   {% endif %}
+   
+    {% if allTraders.companyAddress is empty %}
+      <p class="empty"><label>Adresse entreprise :</label> Pas encore renseigné<br></p>
+   {% else %}
+       <p><label>Adresse entreprise :</label> {{allTraders.companyAddress}}<br></p>
+   {% endif %}
+   <a href="{{path ('view_user')}}">
+       <div class="button">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+           Retour
+       </div>
+   </a>
+</div>
+
+{% endblock fos_user_content %}
