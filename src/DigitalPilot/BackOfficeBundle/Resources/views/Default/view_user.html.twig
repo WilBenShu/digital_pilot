@@ -8,12 +8,21 @@
  
  {% block fos_user_content %}
    <div class="row">
-       <div class="col-md-2 col-md-offset-1">
+       <div class="col-md-5 col-md-offset-3">
+           <table class="table">
+           <tr>
+                <th>E-mail</th>
+                <th>Username</th>
+           </tr>
             {% for user in user %}
-            <p>
-                <a href="{{ path('info_user', { 'email': user.email }) }}">{{ user.username }}</a>
-            </p>
+               <tr>
+                <th>{{ user.email }}</th>
+                <th>{{ user.username }}</th>
+                <th><a href="{{ path('info_user', { 'email': user.email }) }}">Voir</a></th>
+                <th><a href="{{ path('profil_user', { 'email': user.email }) }}">Modifier</a></th>
+                </tr>
             {% endfor %}
+            </table>
         </div>
     </div>
 {% endblock fos_user_content %}
