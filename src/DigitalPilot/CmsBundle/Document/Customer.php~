@@ -1,0 +1,71 @@
+<?php
+
+namespace DigitalPilot\CmsBundle\Document;
+
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+
+/**
+ * @MongoDB\Document(repositoryClass="DigitalPilot\CmsBundle\Repository\CustomerRepository")
+ */
+class Customer
+{
+    /**
+     * @MongoDB\Id
+     */
+    protected $id;
+
+    /**
+     * @Assert\NotBlank()
+     *
+     * @MongoDB\String
+     */
+    protected $firstName;
+
+    /**
+     * @Assert\NotBlank()
+     *
+     * @MongoDB\String
+     */
+    protected $lastName;
+
+    /**
+     * @Assert\NotBlank()
+     *
+     * @MongoDB\String
+     */
+    protected $age;
+
+    /**
+     * @Assert\NotBlank()
+     *
+     * @MongoDB\String
+     */
+    protected $sexe;
+
+    /**
+     * @Assert\Email(message="L'email '{{ value }}' n'est pas valide.", checkMX = true)
+     *
+     * @MongoDB\String
+     */
+    protected $email;
+
+    /**
+     * @MongoDB\String
+     */
+    protected $phone;
+
+    /**
+     * @Assert\NotBlank()
+     *
+     * @MongoDB\String
+     */
+    protected $country;
+
+    public function __construct()
+    {
+        //parent::__construct();
+        // your own logic
+    }
+
+}
