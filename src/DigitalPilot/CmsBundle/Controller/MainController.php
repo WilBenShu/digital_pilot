@@ -34,11 +34,27 @@ class MainController extends Controller
     }
     
     /**
-     * @Route("/bo_commercant", name="bo_commercant")
+     * @Route("/backOffice/statistiques", name="stats")
      */
-    public function boAction()
+    public function statistiquesAction()
     {
-        return $this->render('CmsBundle:Default:boCommercant.html.twig');
+        $currentUser = $this->getUser();
+        
+        return $this->render('CmsBundle:Default:boCommercant.html.twig', array(
+            'user' => $currentUser
+        ));
+    }
+
+    /**
+     * @Route("/backOffice/formParameters", name="formParam")
+     */
+    public function paramFormAction()
+    {
+        $currentUser = $this->getUser();
+
+        return $this->render('CmsBundle:Default:formParameters.html.twig', array(
+            'user' => $currentUser
+        ));
     }
     
     /**

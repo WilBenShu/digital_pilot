@@ -32,14 +32,14 @@ class Customer
     /**
      * @Assert\NotBlank()
      *
-     * @MongoDB\String
+     * @MongoDB\Int
      */
     protected $age;
 
     /**
      * @Assert\NotBlank()
      *
-     * @MongoDB\String
+     * @MongoDB\Boolean
      */
     protected $sexe;
 
@@ -62,12 +62,26 @@ class Customer
      */
     protected $country;
 
+    /**
+     * @Assert\NotBlank()
+     *
+     * @MongoDB\String
+     */
+    protected $question1;
+
+    /**
+     * @Assert\NotBlank()
+     *
+     * @MongoDB\String
+     */
+    protected $commentary;
+
     public function __construct()
     {
         //parent::__construct();
         // your own logic
     }
-    
+
     /**
      * Get id
      *
@@ -230,5 +244,49 @@ class Customer
     public function getCountry()
     {
         return $this->country;
+    }
+
+    /**
+     * Set question1
+     *
+     * @param string $question1
+     * @return self
+     */
+    public function setQuestion1($question1)
+    {
+        $this->question1 = $question1;
+        return $this;
+    }
+
+    /**
+     * Get question1
+     *
+     * @return string $question1
+     */
+    public function getQuestion1()
+    {
+        return $this->question1;
+    }
+
+    /**
+     * Set commentary
+     *
+     * @param string $commentary
+     * @return self
+     */
+    public function setCommentary($commentary)
+    {
+        $this->commentary = $commentary;
+        return $this;
+    }
+
+    /**
+     * Get commentary
+     *
+     * @return string $commentary
+     */
+    public function getCommentary()
+    {
+        return $this->commentary;
     }
 }
