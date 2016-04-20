@@ -7,9 +7,6 @@
 
 {% block content %}
 
-    {# inclure le template de la barre de menu
-    {{ include('templateMenuCommercant.html.twig', { 'user': user }) }}#}
-
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -48,7 +45,7 @@
             <h1 class="text-center">Modification des informations de connexion</h1>
 
                 <div class="row">
-                    <div class="col-md-2 col-md-offset-1">
+                    <div class="col-md-2 col-md-offset-4">
                         {% block fos_user_content %}
                             {% render url('fos_user_change_password') %}
                         {% endblock fos_user_content %}

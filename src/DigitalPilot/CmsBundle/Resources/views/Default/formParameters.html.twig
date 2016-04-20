@@ -2,7 +2,7 @@
 
 {% block style %}
     <!-- Less -->
-    <link rel="stylesheet/less" type="text/css" href="{{ asset('/template/css/customerManagement.less') }}"/>
+    <link rel="stylesheet/less" type="text/css" href="{{ asset('/template/css/profil.less') }}"/>
 {% endblock %}
 
 {% block content %}
@@ -20,11 +20,14 @@
                 <a class="navbar-brand" href="{{ path('digital_pilot_choiceApp') }}"><i class="fa fa-arrow-left"></i>&nbsp
                     Retour</a>
             </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-text">
-                    <li><i class="fa fa-angle-right"></i>&nbsp Gestion des clients</li>
+                    <li><i class="fa fa-angle-right"></i>&nbsp Back Office &nbsp</li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('stats') }}">Statistiques </a></li>
+                    <li class="active"><a href="#"> Paramétrer le formulaire<span class="sr-only">(current)</span></a>
+                    </li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -47,6 +50,12 @@
 
     <div class="container">
 
+        <!-- Content -->
+        <div class="row">
+            <h1 class="text-center">Configuration du formulaire</h1>
+
+        </div>
+        <!-- /.row -->
     </div>
 
 {% endblock %}
