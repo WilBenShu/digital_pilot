@@ -1,9 +1,8 @@
-/nbproject
-/app/cache
-/app/logs
-/app/cache/dev
-/vendor
+/nbproject/*
+/vendor/*
 /bin
-*.log
-*.data
-app/cache/dev/appDevDebugProjectContainer.php
+# Cache and logs (Symfony2)
+/app/cache/*
+/app/logs/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
