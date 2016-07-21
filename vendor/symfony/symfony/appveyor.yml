@@ -21,11 +21,11 @@ install:
     - IF %PHP%==1 appveyor DownloadFile https://curl.haxx.se/ca/cacert.pem
     - IF %PHP%==1 appveyor DownloadFile http://windows.php.net/downloads/releases/archives/php-5.3.11-nts-Win32-VC9-x86.zip
     - IF %PHP%==1 7z x php-5.3.11-nts-Win32-VC9-x86.zip -y >nul
-    - IF %PHP%==1 appveyor DownloadFile http://nebm.ist.utl.pt/~glopes/misc/intl_win/ICU-51.2-dlls.zip
+    - IF %PHP%==1 appveyor DownloadFile https://raw.githubusercontent.com/symfony/binary-utils/master/ICU-51.2-dlls.zip
     - IF %PHP%==1 7z x ICU-51.2-dlls.zip -y >nul
     - IF %PHP%==1 del /Q *.zip
     - IF %PHP%==1 cd ext
-    - IF %PHP%==1 appveyor DownloadFile http://nebm.ist.utl.pt/~glopes/misc/intl_win/php_intl-3.0.0-5.3-nts-vc9-x86.zip
+    - IF %PHP%==1 appveyor DownloadFile https://raw.githubusercontent.com/symfony/binary-utils/master/php_intl-3.0.0-5.3-nts-vc9-x86.zip
     - IF %PHP%==1 7z x php_intl-3.0.0-5.3-nts-vc9-x86.zip -y >nul
     - IF %PHP%==1 appveyor DownloadFile http://windows.php.net/downloads/pecl/releases/apcu/4.0.10/php_apcu-4.0.10-5.3-nts-vc9-x86.zip
     - IF %PHP%==1 7z x php_apcu-4.0.10-5.3-nts-vc9-x86.zip -y >nul
@@ -50,12 +50,12 @@ install:
     - IF %PHP%==1 echo extension=php_ldap.dll >> php.ini-max
     - IF %PHP%==1 echo extension=php_curl.dll >> php.ini-max
     - IF %PHP%==1 echo curl.cainfo=c:\php\cacert.pem >> php.ini-max
-    - appveyor DownloadFile https://getcomposer.org/composer.phar
+    - IF %PHP%==1 appveyor DownloadFile https://getcomposer.org/download/1.0.2/composer.phar
     - copy /Y php.ini-max php.ini
     - cd c:\projects\symfony
     - mkdir %APPDATA%\Composer
-    - IF %APPVEYOR_REPO_NAME%==symfony/symfony copy /Y .composer\* %APPDATA%\Composer\
-    - IF %APPVEYOR_REPO_NAME%==symfony/symfony composer global install --no-progress --ansi || echo curl.cainfo needs PHP 5.3.7
+    - copy /Y .composer\* %APPDATA%\Composer\
+    - composer global install --no-progress --ansi
     - php phpunit install
     - IF %APPVEYOR_REPO_BRANCH%==master (SET COMPOSER_ROOT_VERSION=dev-master) ELSE (SET COMPOSER_ROOT_VERSION=%APPVEYOR_REPO_BRANCH%.x-dev)
     - composer update --no-progress --ansi
