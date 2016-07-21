@@ -1,7 +1,8 @@
-/nbproject/private/
-/app/cache/
-/app/logs/
-/app/cache/dev/
+/nbproject/private
+/app/cache
+/app/logs
+/app/cache/dev
+/bin
 *.log
 *.data
 app/cache/dev/appDevDebugProjectContainer.php
