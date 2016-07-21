@@ -1,7 +1,8 @@
-/nbproject/private
+/nbproject
 /app/cache
 /app/logs
 /app/cache/dev
+/vendor
 /bin
 *.log
 *.data
