@@ -50,92 +50,44 @@
 
     <div class="container">
 
-        <!-- Content -->
+    <!-- Content -->
+    <div class="row">
+        <h1 class="text-center">Configuration du formulaire</h1>
+
+        <h2 class="text-center">Choisissez les informations que vous souhaitez demander :</h2>
+
         <div class="row">
-            <h1 class="text-center">Configuration du formulaire</h1>
-
-            <h2 class="text-center">Choisissez les informations de base que vous souhaitez demander :</h2>
-
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="input-group">
+            {% for key, info in formCustomer %}
+                {% if key <= 3 %}
+                    <div class="col-lg-3">
+                        <div class="input-group">
                         <span class="input-group-addon">
-                                <input type="checkbox" >
+                                <input type="checkbox">
                         </span>
-                        <input type="text" class="form-control" value="Demande du prénom" disabled>
+                            <input type="text" class="form-control" value="{{ info.label }}" disabled>
+                        </div>
                     </div>
-                </div>
-
-                <div class="col-lg-3">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                                <input type="checkbox" >
-                        </span>
-                        <input type="text" class="form-control" value="Demande du nom" disabled>
-                    </div>
-                </div>
-
-                <div class="col-lg-3">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                                <input type="checkbox" >
-                        </span>
-                        <input type="text" class="form-control" value="Demande de l'âge" disabled>
-                    </div>
-                </div>
-
-                <div class="col-lg-3">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                                <input type="checkbox" >
-                        </span>
-                        <input type="text" class="form-control" value="Demande du sexe" disabled>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
-
-            <br>
-
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                                <input type="checkbox" >
-                        </span>
-                        <input type="text" class="form-control" value="Demande de l'email" disabled>
-                    </div>
-                </div>
-
-                <div class="col-lg-3">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                                <input type="checkbox" >
-                        </span>
-                        <input type="text" class="form-control" value="Demande du n° de téléphone" disabled>
-                    </div>
-                </div>
-
-                <div class="col-lg-3">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                                <input type="checkbox" >
-                        </span>
-                        <input type="text" class="form-control" value="Demande de la ville" disabled>
-                    </div>
-                </div>
-
-                <div class="col-lg-3">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                                <input type="checkbox" >
-                        </span>
-                        <input type="text" class="form-control" value="Zone de commentaires" disabled>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
-
+                {% endif %}
+            {% endfor %}
         </div>
+
+        <br>
+
+        <div class="row">
+            {% for key, info in formCustomer %}
+                {% if key > 3 %}
+                    <div class="col-lg-3">
+                        <div class="input-group">
+                        <span class="input-group-addon">
+                                <input type="checkbox" checked>
+                        </span>
+                            <input type="text" class="form-control" value="{{ info.label }}" disabled>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+    </div>
 
 {% endblock %}

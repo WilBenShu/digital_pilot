@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use DigitalPilot\CmsBundle\Document\Trader;
 use DigitalPilot\CmsBundle\Document\Publicite;
+use DigitalPilot\CmsBundle\Document\FormCustomer;
 
 use DigitalPilot\CmsBundle\Form\ProfilType;
 use DigitalPilot\CmsBundle\Form\PubUpload;
@@ -52,8 +53,13 @@ class MainController extends Controller
     {
         $currentUser = $this->getUser();
 
+        $dm = $this->get('doctrine_mongodb')->getManager()->getRepository('CmsBundle:FormCustomer');
+
+        $formCustomer = $dm->findAll();
+
         return $this->render('CmsBundle:Default:formParameters.html.twig', array(
-            'user' => $currentUser
+            'user' => $currentUser,
+            'formCustomer' => $formCustomer
         ));
     }
     
@@ -158,7 +164,7 @@ class MainController extends Controller
     /**
      * @Route("/connexionInformations", name="connexionInformations")
      */
-    public function connexionInformationsAction(Request $request)
+    public function connexionInformationsAction()
     {
         $currentUser = $this->getUser();
 
@@ -166,6 +172,5 @@ class MainController extends Controller
             'user' => $currentUser
         ));
     }
-
 
 }

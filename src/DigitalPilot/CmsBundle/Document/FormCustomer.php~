@@ -1,0 +1,39 @@
+<?php
+
+namespace DigitalPilot\CmsBundle\Document;
+
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+
+/**
+ * @MongoDB\Document(repositoryClass="DigitalPilot\CmsBundle\Repository\FormCustomerRepository")
+ */
+class FormCustomer
+{
+    /**
+     * @MongoDB\Id
+     */
+    protected $id;
+
+    /**
+     * @Assert\NotBlank()
+     *
+     * @MongoDB\String
+     */
+    protected $label;
+
+    /**
+     * @Assert\NotBlank()
+     *
+     * @MongoDB\String
+     */
+    protected $type;
+
+    /**
+     * @Assert\NotBlank()
+     *
+     * @MongoDB\Boolean
+     */
+    protected $isActif;
+
+}

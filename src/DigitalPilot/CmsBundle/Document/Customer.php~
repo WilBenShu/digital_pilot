@@ -245,4 +245,48 @@ class Customer
     {
         return $this->country;
     }
+
+    /**
+     * Set question1
+     *
+     * @param string $question1
+     * @return self
+     */
+    public function setQuestion1($question1)
+    {
+        $this->question1 = $question1;
+        return $this;
+    }
+
+    /**
+     * Get question1
+     *
+     * @return string $question1
+     */
+    public function getQuestion1()
+    {
+        return $this->question1;
+    }
+
+    /**
+     * Set commentary
+     *
+     * @param string $commentary
+     * @return self
+     */
+    public function setCommentary($commentary)
+    {
+        $this->commentary = $commentary;
+        return $this;
+    }
+
+    /**
+     * Get commentary
+     *
+     * @return string $commentary
+     */
+    public function getCommentary()
+    {
+        return $this->commentary;
+    }
 }
